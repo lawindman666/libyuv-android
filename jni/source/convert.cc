@@ -770,7 +770,6 @@ int RGB24ToI420(const uint8* src_rgb24, int src_stride_rgb24,
                 uint8* dst_u, int dst_stride_u,
                 uint8* dst_v, int dst_stride_v,
                 int width, int height) {
-  int y;
 #if defined(HAS_RGB24TOYROW_NEON)
   void (*RGB24ToUVRow)(const uint8* src_rgb24, int src_stride_rgb24,
       uint8* dst_u, uint8* dst_v, int width) = RGB24ToUVRow_C;
@@ -839,6 +838,7 @@ int RGB24ToI420(const uint8* src_rgb24, int src_stride_rgb24,
 #endif
   {
     // Allocate 2 rows of ARGB.
+    int y;
     const int kRowSize = (width * 4 + 31) & ~31;
     align_buffer_64(row, kRowSize * 2);
 #endif
@@ -884,7 +884,6 @@ int RAWToI420(const uint8* src_raw, int src_stride_raw,
               uint8* dst_u, int dst_stride_u,
               uint8* dst_v, int dst_stride_v,
               int width, int height) {
-  int y;
 #if defined(HAS_RAWTOYROW_NEON)
   void (*RAWToUVRow)(const uint8* src_raw, int src_stride_raw,
       uint8* dst_u, uint8* dst_v, int width) = RAWToUVRow_C;
@@ -953,6 +952,7 @@ int RAWToI420(const uint8* src_raw, int src_stride_raw,
 #endif
   {
     // Allocate 2 rows of ARGB.
+    int y;
     const int kRowSize = (width * 4 + 31) & ~31;
     align_buffer_64(row, kRowSize * 2);
 #endif
@@ -998,7 +998,6 @@ int RGB565ToI420(const uint8* src_rgb565, int src_stride_rgb565,
                  uint8* dst_u, int dst_stride_u,
                  uint8* dst_v, int dst_stride_v,
                  int width, int height) {
-  int y;
 #if defined(HAS_RGB565TOYROW_NEON)
   void (*RGB565ToUVRow)(const uint8* src_rgb565, int src_stride_rgb565,
       uint8* dst_u, uint8* dst_v, int width) = RGB565ToUVRow_C;
@@ -1075,6 +1074,7 @@ int RGB565ToI420(const uint8* src_rgb565, int src_stride_rgb565,
 #endif
   {
     // Allocate 2 rows of ARGB.
+    int y;
     const int kRowSize = (width * 4 + 31) & ~31;
     align_buffer_64(row, kRowSize * 2);
 #endif
@@ -1120,7 +1120,6 @@ int ARGB1555ToI420(const uint8* src_argb1555, int src_stride_argb1555,
                    uint8* dst_u, int dst_stride_u,
                    uint8* dst_v, int dst_stride_v,
                    int width, int height) {
-  int y;
 #if defined(HAS_ARGB1555TOYROW_NEON)
   void (*ARGB1555ToUVRow)(const uint8* src_argb1555, int src_stride_argb1555,
       uint8* dst_u, uint8* dst_v, int width) = ARGB1555ToUVRow_C;
@@ -1197,6 +1196,7 @@ int ARGB1555ToI420(const uint8* src_argb1555, int src_stride_argb1555,
 #endif
   {
     // Allocate 2 rows of ARGB.
+    int y;
     const int kRowSize = (width * 4 + 31) & ~31;
     align_buffer_64(row, kRowSize * 2);
 #endif
@@ -1244,7 +1244,6 @@ int ARGB4444ToI420(const uint8* src_argb4444, int src_stride_argb4444,
                    uint8* dst_u, int dst_stride_u,
                    uint8* dst_v, int dst_stride_v,
                    int width, int height) {
-  int y;
 #if defined(HAS_ARGB4444TOYROW_NEON)
   void (*ARGB4444ToUVRow)(const uint8* src_argb4444, int src_stride_argb4444,
       uint8* dst_u, uint8* dst_v, int width) = ARGB4444ToUVRow_C;
@@ -1341,6 +1340,7 @@ int ARGB4444ToI420(const uint8* src_argb4444, int src_stride_argb4444,
 #endif
   {
     // Allocate 2 rows of ARGB.
+    int y;
     const int kRowSize = (width * 4 + 31) & ~31;
     align_buffer_64(row, kRowSize * 2);
 #endif
