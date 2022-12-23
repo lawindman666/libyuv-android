@@ -2301,7 +2301,6 @@ static int ARGBSobelize(const uint8* src_argb, int src_stride_argb,
                         void (*SobelRow)(const uint8* src_sobelx,
                                          const uint8* src_sobely,
                                          uint8* dst, int width)) {
-  int y;
   void (*ARGBToYJRow)(const uint8* src_argb, uint8* dst_g, int width) =
       ARGBToYJRow_C;
   void (*SobelYRow)(const uint8* src_y0, const uint8* src_y1,
@@ -2367,6 +2366,7 @@ static int ARGBSobelize(const uint8* src_argb, int src_stride_argb,
 #endif
   {
     // 3 rows with edges before/after.
+    int y;
     const int kRowSize = (width + kEdge + 31) & ~31;
     align_buffer_64(rows, kRowSize * 2 + (kEdge + kRowSize * 3 + kEdge));
     uint8* row_sobelx = rows;
@@ -2808,7 +2808,6 @@ int YUY2ToNV12(const uint8* src_yuy2, int src_stride_yuy2,
                uint8* dst_y, int dst_stride_y,
                uint8* dst_uv, int dst_stride_uv,
                int width, int height) {
-  int y;
   int halfwidth = (width + 1) >> 1;
   void (*SplitUVRow)(const uint8* src_uv, uint8* dst_u, uint8* dst_v,
                      int width) = SplitUVRow_C;
@@ -2876,6 +2875,7 @@ int YUY2ToNV12(const uint8* src_yuy2, int src_stride_yuy2,
 #endif
 
   {
+    int y;
     int awidth = halfwidth * 2;
     // row of y and 2 rows of uv
     align_buffer_64(rows, awidth * 3);
@@ -2906,7 +2906,6 @@ int UYVYToNV12(const uint8* src_uyvy, int src_stride_uyvy,
                uint8* dst_y, int dst_stride_y,
                uint8* dst_uv, int dst_stride_uv,
                int width, int height) {
-  int y;
   int halfwidth = (width + 1) >> 1;
   void (*SplitUVRow)(const uint8* src_uv, uint8* dst_u, uint8* dst_v,
                      int width) = SplitUVRow_C;
@@ -2974,6 +2973,7 @@ int UYVYToNV12(const uint8* src_uyvy, int src_stride_uyvy,
 #endif
 
   {
+    int y;
     int awidth = halfwidth * 2;
     // row of y and 2 rows of uv
     align_buffer_64(rows, awidth * 3);
