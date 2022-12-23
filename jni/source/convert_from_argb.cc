@@ -210,7 +210,6 @@ int ARGBToNV12(const uint8* src_argb, int src_stride_argb,
                uint8* dst_y, int dst_stride_y,
                uint8* dst_uv, int dst_stride_uv,
                int width, int height) {
-  int y;
   int halfwidth = (width + 1) >> 1;
   void (*ARGBToUVRow)(const uint8* src_argb0, int src_stride_argb,
                       uint8* dst_u, uint8* dst_v, int width) = ARGBToUVRow_C;
@@ -307,6 +306,7 @@ int ARGBToNV12(const uint8* src_argb, int src_stride_argb,
 #endif
   {
     // Allocate a rows of uv.
+    int y;
     align_buffer_64(row_u, ((halfwidth + 31) & ~31) * 2);
     uint8* row_v = row_u + ((halfwidth + 31) & ~31);
 
@@ -335,7 +335,6 @@ int ARGBToNV21(const uint8* src_argb, int src_stride_argb,
                uint8* dst_y, int dst_stride_y,
                uint8* dst_uv, int dst_stride_uv,
                int width, int height) {
-  int y;
   int halfwidth = (width + 1) >> 1;
   void (*ARGBToUVRow)(const uint8* src_argb0, int src_stride_argb,
                       uint8* dst_u, uint8* dst_v, int width) = ARGBToUVRow_C;
@@ -432,6 +431,7 @@ int ARGBToNV21(const uint8* src_argb, int src_stride_argb,
 #endif
   {
     // Allocate a rows of uv.
+    int y;
     align_buffer_64(row_u, ((halfwidth + 31) & ~31) * 2);
     uint8* row_v = row_u + ((halfwidth + 31) & ~31);
 
@@ -459,7 +459,6 @@ LIBYUV_API
 int ARGBToYUY2(const uint8* src_argb, int src_stride_argb,
                uint8* dst_yuy2, int dst_stride_yuy2,
                int width, int height) {
-  int y;
   void (*ARGBToUVRow)(const uint8* src_argb, int src_stride_argb,
       uint8* dst_u, uint8* dst_v, int width) = ARGBToUVRow_C;
   void (*ARGBToYRow)(const uint8* src_argb, uint8* dst_y, int width) =
@@ -563,6 +562,7 @@ int ARGBToYUY2(const uint8* src_argb, int src_stride_argb,
 
   {
     // Allocate a rows of yuv.
+    int y;
     align_buffer_64(row_y, ((width + 63) & ~63) * 2);
     uint8* row_u = row_y + ((width + 63) & ~63);
     uint8* row_v = row_u + ((width + 63) & ~63) / 2;
@@ -585,7 +585,6 @@ LIBYUV_API
 int ARGBToUYVY(const uint8* src_argb, int src_stride_argb,
                uint8* dst_uyvy, int dst_stride_uyvy,
                int width, int height) {
-  int y;
   void (*ARGBToUVRow)(const uint8* src_argb, int src_stride_argb,
       uint8* dst_u, uint8* dst_v, int width) = ARGBToUVRow_C;
   void (*ARGBToYRow)(const uint8* src_argb, uint8* dst_y, int width) =
@@ -689,6 +688,7 @@ int ARGBToUYVY(const uint8* src_argb, int src_stride_argb,
 
   {
     // Allocate a rows of yuv.
+    int y;
     align_buffer_64(row_y, ((width + 63) & ~63) * 2);
     uint8* row_u = row_y + ((width + 63) & ~63);
     uint8* row_v = row_u + ((width + 63) & ~63) / 2;
