@@ -659,10 +659,10 @@ static void ScaleAddCols2_C(int dst_width, int boxheight, int x, int dx,
   int i;
   int scaletbl[2];
   int minboxwidth = dx >> 16;
-  int boxwidth;
   scaletbl[0] = 65536 / (MIN1(minboxwidth) * boxheight);
   scaletbl[1] = 65536 / (MIN1(minboxwidth + 1) * boxheight);
   for (i = 0; i < dst_width; ++i) {
+    int boxwidth;
     int ix = x >> 16;
     x += dx;
     boxwidth = MIN1((x >> 16) - ix);
@@ -676,10 +676,10 @@ static void ScaleAddCols2_16_C(int dst_width, int boxheight, int x, int dx,
   int i;
   int scaletbl[2];
   int minboxwidth = dx >> 16;
-  int boxwidth;
   scaletbl[0] = 65536 / (MIN1(minboxwidth) * boxheight);
   scaletbl[1] = 65536 / (MIN1(minboxwidth + 1) * boxheight);
   for (i = 0; i < dst_width; ++i) {
+    int boxwidth;
     int ix = x >> 16;
     x += dx;
     boxwidth = MIN1((x >> 16) - ix);
@@ -732,7 +732,6 @@ static void ScalePlaneBox(int src_width, int src_height,
                           int dst_width, int dst_height,
                           int src_stride, int dst_stride,
                           const uint8* src_ptr, uint8* dst_ptr) {
-  int j, k;
   // Initial source x/y coordinate and step values as 16.16 fixed point.
   int x = 0;
   int y = 0;
@@ -744,6 +743,7 @@ static void ScalePlaneBox(int src_width, int src_height,
   src_width = Abs(src_width);
   {
     // Allocate a row buffer of uint16.
+    int j, k;
     align_buffer_64(row16, src_width * 2);
     void (*ScaleAddCols)(int dst_width, int boxheight, int x, int dx,
         const uint16* src_ptr, uint8* dst_ptr) =
@@ -801,7 +801,6 @@ static void ScalePlaneBox_16(int src_width, int src_height,
                              int dst_width, int dst_height,
                              int src_stride, int dst_stride,
                              const uint16* src_ptr, uint16* dst_ptr) {
-  int j, k;
   // Initial source x/y coordinate and step values as 16.16 fixed point.
   int x = 0;
   int y = 0;
@@ -813,6 +812,7 @@ static void ScalePlaneBox_16(int src_width, int src_height,
   src_width = Abs(src_width);
   {
     // Allocate a row buffer of uint32.
+    int j, k;
     align_buffer_64(row32, src_width * 4);
     void (*ScaleAddCols)(int dst_width, int boxheight, int x, int dx,
         const uint32* src_ptr, uint16* dst_ptr) =
@@ -1046,7 +1046,6 @@ void ScalePlaneBilinearUp(int src_width, int src_height,
                           int src_stride, int dst_stride,
                           const uint8* src_ptr, uint8* dst_ptr,
                           enum FilterMode filtering) {
-  int j;
   // Initial source x/y coordinate and step values as 16.16 fixed point.
   int x = 0;
   int y = 0;
@@ -1125,6 +1124,7 @@ void ScalePlaneBilinearUp(int src_width, int src_height,
     y = max_y;
   }
   {
+    int j;
     int yi = y >> 16;
     const uint8* src = src_ptr + yi * src_stride;
 
@@ -1177,7 +1177,6 @@ void ScalePlaneBilinearUp_16(int src_width, int src_height,
                              int src_stride, int dst_stride,
                              const uint16* src_ptr, uint16* dst_ptr,
                              enum FilterMode filtering) {
-  int j;
   // Initial source x/y coordinate and step values as 16.16 fixed point.
   int x = 0;
   int y = 0;
@@ -1256,6 +1255,7 @@ void ScalePlaneBilinearUp_16(int src_width, int src_height,
     y = max_y;
   }
   {
+    int j;
     int yi = y >> 16;
     const uint16* src = src_ptr + yi * src_stride;
 
