@@ -191,7 +191,9 @@ int MipsCpuCaps(const char* cpuinfo_name, const char ase[]) {
       }
     }
   }
-  fclose(f);
+  if(f) {
+    fclose(f);
+  }
   return 0;
 }
 
