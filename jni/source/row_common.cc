@@ -2272,7 +2272,7 @@ void HalfFloatRow_C(const uint16* src, uint16* dst, float scale, int width) {
   for (i = 0; i < width; ++i) {
     float value = src[i] * mult;
     uint32_t nValue = static_cast<uint32_t>(value);
-    dst[i] = (uint16)(value >> 13); 
+    dst[i] = (uint16)(nValue >> 13); 
     //dst[i] = (uint16)((*(uint32_t*)&value) >> 13);
   }
 }
