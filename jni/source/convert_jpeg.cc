@@ -36,7 +36,8 @@ static void JpegCopyI420(void* opaque,
                          const uint8* const* data,
                          const int* strides,
                          int rows) {
-  I420Buffers* dest = (I420Buffers*)(opaque);
+  //I420Buffers* dest = (I420Buffers*)(opaque);
+  I420Buffers* dest = static_cast<I420Buffers*>(opaque);
   I420Copy(data[0], strides[0],
            data[1], strides[1],
            data[2], strides[2],
@@ -54,7 +55,8 @@ static void JpegI422ToI420(void* opaque,
                            const uint8* const* data,
                            const int* strides,
                            int rows) {
-  I420Buffers* dest = (I420Buffers*)(opaque);
+  //I420Buffers* dest = (I420Buffers*)(opaque);
+  I420Buffers* dest = static_cast<I420Buffers*>(opaque);
   I422ToI420(data[0], strides[0],
              data[1], strides[1],
              data[2], strides[2],
@@ -72,7 +74,8 @@ static void JpegI444ToI420(void* opaque,
                            const uint8* const* data,
                            const int* strides,
                            int rows) {
-  I420Buffers* dest = (I420Buffers*)(opaque);
+  //I420Buffers* dest = (I420Buffers*)(opaque);
+  I420Buffers* dest = static_cast<I420Buffers*>(opaque);
   I444ToI420(data[0], strides[0],
              data[1], strides[1],
              data[2], strides[2],
@@ -90,7 +93,8 @@ static void JpegI400ToI420(void* opaque,
                            const uint8* const* data,
                            const int* strides,
                            int rows) {
-  I420Buffers* dest = (I420Buffers*)(opaque);
+  //I420Buffers* dest = (I420Buffers*)(opaque);
+  I420Buffers* dest = static_cast<I420Buffers*>(opaque);
   I400ToI420(data[0], strides[0],
              dest->y, dest->y_stride,
              dest->u, dest->u_stride,
