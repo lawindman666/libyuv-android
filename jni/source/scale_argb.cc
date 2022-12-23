@@ -190,7 +190,6 @@ static void ScaleARGBBilinearDown(int src_width, int src_height,
                                   const uint8* src_argb, uint8* dst_argb,
                                   int x, int dx, int y, int dy,
                                   enum FilterMode filtering) {
-  int j;
   void (*InterpolateRow)(uint8* dst_argb, const uint8* src_argb,
       ptrdiff_t src_stride, int dst_width, int source_y_fraction) =
       InterpolateRow_C;
@@ -259,6 +258,7 @@ static void ScaleARGBBilinearDown(int src_width, int src_height,
   // TODO(fbarchard): Consider not allocating row buffer for kFilterLinear.
   // Allocate a row of ARGB.
   {
+    int j;
     align_buffer_64(row, clip_src_width * 4);
 
     const int max_y = (src_height - 1) << 16;
@@ -292,7 +292,6 @@ static void ScaleARGBBilinearUp(int src_width, int src_height,
                                 const uint8* src_argb, uint8* dst_argb,
                                 int x, int dx, int y, int dy,
                                 enum FilterMode filtering) {
-  int j;
   void (*InterpolateRow)(uint8* dst_argb, const uint8* src_argb,
       ptrdiff_t src_stride, int dst_width, int source_y_fraction) =
       InterpolateRow_C;
@@ -374,6 +373,7 @@ static void ScaleARGBBilinearUp(int src_width, int src_height,
   }
 
   {
+    int j;
     int yi = y >> 16;
     const uint8* src = src_argb + yi * src_stride;
 
