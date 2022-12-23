@@ -177,7 +177,7 @@ int MipsCpuCaps(const char* cpuinfo_name, const char ase[]) {
       return kCpuHasDSPR2;
     }
   }
-  while (fgets(cpuinfo_line, sizeof(cpuinfo_line) - 1, f)) {
+  while (f && fgets(cpuinfo_line, sizeof(cpuinfo_line) - 1, f)) {
     if (memcmp(cpuinfo_line, "ASEs implemented", 16) == 0) {
       char* p = strstr(cpuinfo_line, ase);
       if (p && (p[len] == ' ' || p[len] == '\n')) {
