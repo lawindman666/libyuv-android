@@ -205,7 +205,8 @@ static void JpegI420ToARGB(void* opaque,
                          const uint8* const* data,
                          const int* strides,
                          int rows) {
-  ARGBBuffers* dest = (ARGBBuffers*)(opaque);
+  //ARGBBuffers* dest = (ARGBBuffers*)(opaque);
+  ARGBBuffers* dest = static_cast<ARGBBuffers*>(opaque);
   I420ToARGB(data[0], strides[0],
              data[1], strides[1],
              data[2], strides[2],
@@ -219,7 +220,8 @@ static void JpegI422ToARGB(void* opaque,
                            const uint8* const* data,
                            const int* strides,
                            int rows) {
-  ARGBBuffers* dest = (ARGBBuffers*)(opaque);
+  //ARGBBuffers* dest = (ARGBBuffers*)(opaque);
+  ARGBBuffers* dest = static_cast<ARGBBuffers*>(opaque);
   I422ToARGB(data[0], strides[0],
              data[1], strides[1],
              data[2], strides[2],
@@ -233,7 +235,8 @@ static void JpegI444ToARGB(void* opaque,
                            const uint8* const* data,
                            const int* strides,
                            int rows) {
-  ARGBBuffers* dest = (ARGBBuffers*)(opaque);
+  //ARGBBuffers* dest = (ARGBBuffers*)(opaque);
+  ARGBBuffers* dest = static_cast<ARGBBuffers*>(opaque);
   I444ToARGB(data[0], strides[0],
              data[1], strides[1],
              data[2], strides[2],
@@ -247,7 +250,9 @@ static void JpegI400ToARGB(void* opaque,
                            const uint8* const* data,
                            const int* strides,
                            int rows) {
-  ARGBBuffers* dest = (ARGBBuffers*)(opaque);
+  //ARGBBuffers* dest = (ARGBBuffers*)(opaque);
+  ARGBBuffers* dest = static_cast<ARGBBuffers*>(opaque);
+  
   I400ToARGB(data[0], strides[0],
              dest->argb, dest->argb_stride,
              dest->w, rows);
