@@ -834,7 +834,6 @@ int I420ToRGB565Dither(const uint8* src_y, int src_stride_y,
                        const uint8* src_v, int src_stride_v,
                        uint8* dst_rgb565, int dst_stride_rgb565,
                        const uint8* dither4x4, int width, int height) {
-  int y;
   void (*I422ToARGBRow)(const uint8* y_buf,
                         const uint8* u_buf,
                         const uint8* v_buf,
@@ -922,6 +921,7 @@ int I420ToRGB565Dither(const uint8* src_y, int src_stride_y,
 #endif
   {
     // Allocate a row of argb.
+    int y;
     align_buffer_64(row_argb, width * 4);
     for (y = 0; y < height; ++y) {
       I422ToARGBRow(src_y, src_u, src_v, row_argb, &kYuvI601Constants, width);
